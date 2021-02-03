@@ -9,10 +9,10 @@ filelist = glob.glob("*.mp3", recursive=False)
 
 for x in range(0, len(filelist)):
     curfile = eyed3.load(filelist[x])
-    rawartist = curfile.tag.artist
+    rawartist = curfile.tag.album_artist
     rawalbum = curfile.tag.album
-    artist = re.sub("[^a-zA-Z0-9()&!#.@£$]+", " ", rawartist)
-    album = re.sub("[^a-zA-Z0-9()&!#.@£$]+", " ", rawalbum)
+    artist = re.sub(r"[\\/:*?\"<>|]+", " ", rawartist)
+    album = re.sub(r"[\\/:*?\"<>|]+", " ", rawalbum)
     dirpath = os.path.join(artist, album)
     if Path.is_dir(Path(dirpath)) is False:
         os.makedirs(dirpath)
