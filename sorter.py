@@ -9,8 +9,8 @@ filelist = glob.glob("*.mp3", recursive=False)
 
 for x in range(0, len(filelist)):
     curfile = eyed3.load(filelist[x])
-    rawartist = curfile.tag.album_artist
-    rawalbum = curfile.tag.album
+    rawartist = str(curfile.tag.album_artist)
+    rawalbum = str(curfile.tag.album)
     artist = re.sub(r"[\\/:*?\"<>|]+", " ", rawartist)
     album = re.sub(r"[\\/:*?\"<>|]+", " ", rawalbum)
     dirpath = os.path.join(artist, album)
